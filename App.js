@@ -1,14 +1,15 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import firebase from './firebaseConfig';
-import Login from './src/screens/Login';
-export default function App() {
+import {NavigationContainer} from '@react-navigation/native';
+import { AppStack } from './src/screens/Navigation';
 
+const App = () =>{
 
   return (
-    <View style={styles.container}>
-     <Login/>
-    </View>
+    <NavigationContainer>
+      <AppStack/>
+    </NavigationContainer>
+
   );
 }
 
@@ -20,3 +21,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+ 
+export default App;
