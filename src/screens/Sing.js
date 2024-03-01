@@ -1,88 +1,103 @@
-import React,{useState} from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {View,Text,TouchableOpacity,TextInput,StyleSheet} from 'react-native';
+import React,{useState,useEffect} from 'react';
+import {signInWithEmailAndPassword} from 'firebase/auth';
+import { auth ,firebase,getAuth,createUserWithEmailAndPassword} from '../database/Firebase-config';
+import { collection } from 'firebase/firestore';
 import styles from '../style/stySingup';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  ImageBackground,
-  Image,
-  FlatList,
-} from 'react-native';
 
-const SignIn = () => {
-  const navigation = useNavigation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name,setName] = useState('');
- /*
-  return (
-    <View>
-      <Text>SignIn Screen</Text>
-      <Button
-        title="Go to Other Screen"
-       // onPress={() => navigation.navigate('Login')}
-      />
-    </View>
-  );
-  */
-  return (
-   
-    <ScrollView style={styles.container} >
-      
-      <View style={[styles.container, {marginTop:'60%'}]}>
-        <Text >singup</Text>
+
+
+
+const Singup=() => {
+  const [email,setEmail]=useState('')
+  const[password,setPassword] = useState('')
+  const[firstName, setFirstName] = useState('')
+  const [Address ,setAddress] = useState('')
+  
+
+
+  redisterUser= async (email,password,firstName,Address) => {
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        firebase.auth().currentUser.sendEmailVerification({
+          handleCodeInApp: true,
+          url: 'https://ashoin-e3c26.appspot.com',
+        })
+        .then(() => {
+          alert('Verifaction email send')
+
+        }).catch((error)=> {
+          alert(error.message)
+        })
+        .then(()=>{
+          firebase.firebase().collection('usersFashionDesigner')
+          .doc(firebase.auth().currentUser.uid)
+          .set({
+            firstName,
+            Address,
+            email,
+          })
+        }) .catch((error)=> {
+          alert(error.message);
+        })
+      })
+    .catch((error => {
+      alert(error.message)
+    }))
+
+  }
+return(
+  <View style={styles.container}>
+    <Text style={{fontWeight:'bold','fontSize':23}}>SingUp</Text>
+
+      <View style={{marginTop:40}}>
         <TextInput
-          style={styles.input}
-          placeholder='name'
-          value={email}
-          onChangeText={(text) => setName(text)}
-        />
-         <TextInput
-          style={styles.input}
-          placeholder='phone'
-          value={email}
-          onChangeText={(text) => setName(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Email'
-          keyboardType='email-address'
-          textContentType='emailAddress'
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Password'
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          autoCorrect={false}
-          
-        />
-          <TextInput
-          style={styles.input}
-          placeholder='confing Password'
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          autoCorrect={false}
-          />
+        style={styles.textInput}
+          placeholder="First Name"
+        onChangeText={(firstName) => setFirstName(firstName)}
+
+          autoCorrect={false}>
+        </TextInput>
+
+        <TextInput 
+        style={styles.textInput}
+        placeholder="Address"
+        autoCapitalize="none"
+        onChangeText={(Address) => setAddress(Address)}
+        autoCorrect={false}
+
+        >
+
+        </TextInput>
+        <TextInput 
+        style={styles.textInput}
+        placeholder="Email"
+        autoCapitalize="none"
+        onChangeText={(email) => setEmail(email)}
+        autoCorrect={false}
+        keyboardType="email-address"
+        >
+        </TextInput>
+        <TextInput 
+        style={styles.textInput}
+        placeholder="Password"
+        autoCapitalize="none"
+        onChangeText={(password) => setPassword(password)}
+        autoCorrect={false}
+        secureTextEntry={true}
+        >
+        </TextInput>
       </View>
 
-      <View>
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>Siingup</Text>
-        </TouchableOpacity>
+      <TouchableOpacity  onAccessibiltyAction={() => Singup(email,password,firstName,Address)}
+      style={styles.button}>
+       
+          <Text style={{  fontSize:22}}> registe</Text>
+      </TouchableOpacity>
+  </View>
+  
+)
 
-        
-      </View>
-    </ScrollView>
-  );
-};
+}
 
-export default SignIn;
+export default Singup

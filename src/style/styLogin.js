@@ -9,9 +9,15 @@ const styles = StyleSheet.create({
      padding:7
       },
   input: {
-    height: 50,
-    backgroundColor: '#f1f3f6',
-    marginTop: '3.5%',
+    paddingTop:20,
+    paddingBottom:10,
+    width:250,
+    fontSize:20,
+    borderBottomWidth:1,
+    borderBottomColor:'#000',
+    marginBottom:10,
+    textAlign:'center'
+
     
  },
  registerText: {
