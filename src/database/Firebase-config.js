@@ -1,20 +1,17 @@
-import  {initializeApp} from 'firebase/app';
-import {getAuth} from 'firebase/auth';
-import {getFirestore} from'firebase/firestore';
-import {getStorage} from 'firebase/storage'
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCrBxQeSR10baqnxt6ca_K1fT55qpbe50k",
-  authDomain: "fashoin-e3c26.firebaseapp.com",
-  projectId: "fashoin-e3c26",
-  storageBucket: "fashoin-e3c26.appspot.com",
-  messagingSenderId: "798065831910",
-  appId: "1:798065831910:web:c76bb40a07415617297027"
+  apiKey: "AIzaSyAlc2yIkMu5ws_pgiZbvetC4NzBZv23Nps",
+  authDomain: "designfashoin.firebaseapp.com",
+  projectId: "designfashoin",
+  storageBucket: "designfashoin.appspot.com",
+  messagingSenderId: "967210178253",
+  appId: "1:967210178253:web:c52459540e6ef9dc197b84",
+  measurementId: "G-JEX4QNJ5CT"
 };
 
-
-
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const storge = getStorage(app);
-export const firebase=getFirestore(app);
-export const auth = getAuth(app);
+const analytics = getAnalytics(app);

@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './Login';
 import SignIn from './Sing';
 import Profile from './ProfileScreen';
+import Dashpoard from './Dashboard';
  const AppStackNavigator = createNativeStackNavigator();
 
  export const AppStack = () => {
@@ -13,10 +14,11 @@ import Profile from './ProfileScreen';
         headerTintColor: 'white',
         headerTitleAlign: 'center',
       }}>
+        <AppStackNavigator.Screen name='singup' component={SignIn} options={{ header:() => null }}/>
+
         <AppStackNavigator.Screen name='Login' component={Login} options={{ header:() => null }}/>
 
         <AppStackNavigator.Screen name='profile' component={Profile}  options={{ header:() => null }}/>
-       <AppStackNavigator.Screen name='singup' component={SignIn}options={{ header:() => null }}/>
 
     </AppStackNavigator.Navigator>
     )
