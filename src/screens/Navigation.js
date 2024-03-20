@@ -14,7 +14,7 @@ import Dashpoard from './Dashboard';
         headerTintColor: 'white',
         headerTitleAlign: 'center',
       }}>
-        <AppStackNavigator.Screen name='singup' component={SignIn} options={{ header:() => null }}/>
+        <AppStackNavigator.Screen name='SignUp' component={SignIn} options={{ header:() => null }}/>
 
         <AppStackNavigator.Screen name='Login' component={Login} options={{ header:() => null }}/>
 

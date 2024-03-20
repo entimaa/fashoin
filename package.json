@@ -9,11 +9,10 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.21.0",
+    "@react-native-async-storage/async-storage": "1.21.0",
     "@react-native-community/viewpager": "5.0.11",
     "@react-native-firebase/app": "^18.8.0",
     "@react-native-firebase/auth": "^18.8.0",
-    "@react-native-firebase/firestore": "^18.8.0",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "@react-navigation/stack": "^6.3.20",

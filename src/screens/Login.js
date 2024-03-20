@@ -101,7 +101,7 @@ const Login = (props) => {
         </TouchableOpacity>
 
         <View style={styles.registerOptionLoginScreen}>
-          <TouchableOpacity  onPress={() => props.navigation.navigate("singup")} >
+          <TouchableOpacity  onPress={() => props.navigation.navigate("profile")} >
             <Text style={[styles.registerText, { color: '#ffff', }]}>Don't have an account? </Text>
           </TouchableOpacity>
           <TouchableOpacity >
